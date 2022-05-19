@@ -1,0 +1,55 @@
+<div class="column">
+  <div class="column-header">
+    <div *ngIf="!editMode" class="column-title-wrapper">
+      <p class="column-title" (click)="onTitlePress()">{{ column.title }}</p>
+      <p-button
+        icon="pi pi-times"
+        styleClass="p-button-danger p-button-sm"
+        (click)="onPressDeleteColumn(column)"
+      >
+      </p-button>
+    </div>
+    <div *ngIf="editMode" class="column-edit-wrapper">
+      <div class="edit-button-container">
+        <p-button
+          i18n-label="@@submitbtn"
+          label="Submit"
+          styleClass="p-button-sm"
+          (click)="changeColumnTitle()"
+        ></p-button>
+        <p-button
+          i18n-label="@@cancelbtn"
+          label="Cancel"
+          styleClass="p-button-sm p-button-danger"
+          (click)="closeEditMode()"
+        ></p-button>
+      </div>
+      <input
+        class="input-title"
+        id="title"
+        [formControl]="title"
+        type="text"
+        pInputText
+      />
+    </div>
+  </div>
+  <div
+    class="task-list"
+    #taskList
+    appMaxHeight
+    cdkDropList
+    [cdkDropListData]="column.tasks"
+    (cdkDropListDropped)="dropTask($event, column)"
+  >
+    <app-task
+      [task]="task"
+      *ngFor="let task of column.tasks"
+      [column]="column"
+      [boardId]="boardId"
+      cdkDrag
+    ></app-task>
+  </div>
+</div>
+<p-progressSpinner class="progress-spinner" *ngIf="loading"></p-progressSpinner>
+<div class="overlay" *ngIf="loading"></div>
+<p-toast></p-toast>

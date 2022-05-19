@@ -1,0 +1,15 @@
+::ng-deep .p-panel {
+  max-width: 400px;
+  margin-top: 40px;
+  margin-right: auto;
+  margin-left: auto;
+
+  .p-panel-content {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .p-button {
+    align-self: flex-end;
+  }
+}

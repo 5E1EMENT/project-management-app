@@ -1,0 +1,46 @@
+.column-header {
+  position: relative;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.column-title-wrapper {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.column-edit-wrapper {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.column-title {
+  max-width: 230px;
+  margin: 0;
+  overflow: hidden;
+  font-weight: 500;
+  font-size: 16px;
+  text-overflow: ellipsis;
+  cursor: pointer;
+}
+
+.input-title {
+  flex-grow: 2;
+  width: 100px;
+  height: 20px;
+}
+
+.edit-button-container {
+  display: flex;
+  gap: 4px;
+}

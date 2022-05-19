@@ -1,0 +1,73 @@
+:host ::ng-deep {
+  max-width: 100px;
+
+  .p-grid {
+    display: block;
+  }
+
+  .top-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .board-name {
+    margin-bottom: 10px;
+    font-weight: 700;
+    font-size: 1.5rem;
+  }
+
+  .board-description {
+    font-weight: 400;
+    font-size: 1rem;
+  }
+
+  .board-list-item {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 1rem;
+
+    .board-list-detail {
+      min-width: 200px;
+      word-wrap: break-word;
+    }
+
+    .board-list-action {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .p-button {
+      margin-bottom: 0.5rem;
+    }
+  }
+}
+
+.card {
+  max-width: 1000px;
+  margin-right: auto;
+  margin-bottom: 2rem;
+  margin-left: auto;
+  padding: 2rem;
+  border-radius: 4px;
+  box-shadow: 0 2px 1px -1px rgb(0 0 0 / 20%), 0 1px 1px 0 rgb(0 0 0 / 14%),
+    0 1px 3px 0 rgb(0 0 0 / 12%);
+}
+
+@media (max-width: 500px) {
+  :host ::ng-deep {
+    .card {
+      padding: 3px;
+    }
+
+    .p-dataview-header {
+      padding: 4px;
+    }
+  }
+}

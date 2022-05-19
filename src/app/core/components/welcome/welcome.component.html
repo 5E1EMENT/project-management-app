@@ -1,0 +1,93 @@
+<div>
+  <h2 i18n="@@welcome-page-welcome-title" class="welcome-title">
+    Welcome to Project Manager
+  </h2>
+  <p i18n="@@welcome-page-p-one">
+    Project Manager helps teams get things done efficiently.
+  </p>
+  <p i18n="@@welcome-page-p-two">
+    Work as a team, manage projects and take productivity to the next level
+    level in your own unique way with Project Manager.
+  </p>
+  <button
+    routerLink="/authorization/signup"
+    class="start-btn callback-bt"
+    pButton
+    pRipple
+    i18n-label="@@btn"
+    label="create an account to get started"
+    icon="pi pi-user"
+  ></button>
+  <h2 i18n="@@coordination">Project Manager is team coordination</h2>
+  <div i18n="@@welcome-start">
+    Start with boards, columns and cards and then move on to more complex ones
+    functions. Manage projects, organize tasks and maintain team spirit is all
+    in Project Manager.
+    <div class="preview-img">
+      <img
+        i18n-src="@@srcboard"
+        src="../../../../en/assets/images/board.png"
+        alt="board"
+      />
+    </div>
+  </div>
+</div>
+<div class="team">
+  <h2 i18n="@@team">Our team</h2>
+  <div class="team-description">
+    <p-card
+      class="team-card"
+      header="Vladimir"
+      subheader="Front-end Developer"
+      [style]="{ width: '360px' }"
+      styleClass="p-card-shadow"
+    >
+      <ng-template pTemplate="header">
+        <img
+          class="avatar"
+          alt="Card"
+          i18n-src="@@srcavatar"
+          src="../../../../en/assets/images/avatar.png"
+        />
+      </ng-template>
+      <p i18n="@@Description">Description</p>
+      <p i18n="@@Vladimir">Develop board route, drag & drop, deploy backend.</p>
+    </p-card>
+    <p-card
+      class="team-card"
+      header="Daniil"
+      subheader="Front-end Developer"
+      [style]="{ width: '360px' }"
+      styleClass="p-card-shadow"
+    >
+      <ng-template pTemplate="header">
+        <img
+          class="avatar"
+          alt="Card"
+          i18n-src="@@srcavatar"
+          src="../../../../en/assets/images/avatar.png"
+        />
+      </ng-template>
+      <p i18n="@@Description">Description</p>
+      <p i18n="@@Daniil">Develop boards route, board route.</p>
+    </p-card>
+    <p-card
+      class="team-card"
+      header="Andrey"
+      subheader="Front-end Developer"
+      [style]="{ width: '360px' }"
+      styleClass="p-card-shadow"
+    >
+      <ng-template pTemplate="header">
+        <img
+          class="avatar"
+          alt="Card"
+          i18n-src="@@srcavatar"
+          src="../../../../en/assets/images/avatar.png"
+        />
+      </ng-template>
+      <p i18n="@@Description">Description</p>
+      <p i18n="@@andrey">Develop authorization, localization, welcome page.</p>
+    </p-card>
+  </div>
+</div>

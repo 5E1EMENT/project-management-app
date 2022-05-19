@@ -1,0 +1,99 @@
+<div *ngIf="board$ | async as board" class="board">
+  <div class="top-wrapper">
+    <div class="text-wrapper">
+      <h1 class="board-title">{{ board.title }}</h1>
+      <div class="board-desc">
+        <ng-container i18n="@@Descrip">Description:</ng-container>
+        {{ board.description }}
+      </div>
+    </div>
+    <div class="button-container">
+      <button pButton icon="pi pi-link" i18n-label="@@addcolumn" label="Add column"
+        (click)="displayModalNewColumn = true" class="add-button"></button>
+      <button *ngIf="columns.length > 0" pButton icon="pi pi-link" i18n-label="@@addtask" label="Add task"
+        (click)="displayModalNewTask = true" class="add-button"></button>
+    </div>
+  </div>
+  <div class="columns-list" cdkDropList cdkDropListOrientation="horizontal" (cdkDropListDropped)="dropColumn($event)"
+    [cdkDropListData]="columns" cdkDropListGroup>
+    <div class="columns-item" *ngFor="let column of columns" cdkDrag>
+      <div class="column-wrapper">
+        <div class="drag-handle" cdkDragHandle>
+          <div class="move-button">
+            <svg width="24px" fill="currentColor" viewBox="0 0 24 24">
+              <path
+                d="M10 9h4V6h3l-5-5-5 5h3v3zm-1 1H6V7l-5 5 5 5v-3h3v-4zm14 2l-5-5v3h-3v4h3v3l5-5zm-9 3h-4v3H7l5 5 5-5h-3v-3z">
+              </path>
+              <path d="M0 0h24v24H0z" fill="none"></path>
+            </svg>
+          </div>
+        </div>
+        <div class="column">
+          <app-column-header [column]="column" (loadingColumnEvent)="
+              loadingColumn = $event.loading; loadingColumnId = $event.columnId
+            ">
+          </app-column-header>
+          <div class="task-list" id="{{ column.id }}" appMaxHeight cdkDropList [cdkDropListData]="column.tasks"
+            (cdkDropListDropped)="dropTask($event, column)">
+            <app-task [task]="task" *ngFor="let task of column.tasks" [column]="column" [boardId]="boardId" cdkDrag>
+            </app-task>
+          </div>
+        </div>
+        <p-progressSpinner class="progress-spinner" *ngIf="loadingColumn && loadingColumnId === column.id">
+        </p-progressSpinner>
+        <div class="overlay" *ngIf="loadingColumn && loadingColumnId === column.id"></div>
+      </div>
+    </div>
+  </div>
+</div>
+<p-progressSpinner class="progress-spinner" *ngIf="loading"></p-progressSpinner>
+<p-dialog header="Add column" i18n-header="@@addcolumn" [(visible)]="displayModalNewColumn" [modal]="true"
+  [style]="{ width: '340px' }" [draggable]="false" [breakpoints]="{ '400px': '90vw' }" [resizable]="false">
+  <div class="field">
+    <label for="title" class="block" i18n="@@titleofcolumn">Title of column</label>
+    <input id="title" [formControl]="title" type="title" aria-describedby="title-help" pInputText autofocus />
+    <small *ngIf="title.hasError('required') && !title.untouched" id="title-help" class="p-error block"
+      i18n="@@titlerequared">Title is
+      required.</small>
+    <small *ngIf="title.hasError('minlength') && !title.untouched" id="title-help" class="p-error block"
+      i18n="@@minsixchar">Minimum 6
+      characters.</small>
+  </div>
+  <ng-template pTemplate="footer">
+    <button pButton pRipple type="button" icon="pi pi-check" i18n-label="@@add" label="Add" (click)="addColumn()"
+      class="p-button-raised" [disabled]="!title.valid || loading"></button>
+  </ng-template>
+</p-dialog>
+<p-dialog header="Add task" i18n-header="@addtask" [(visible)]="displayModalNewTask" [modal]="true"
+  [style]="{ width: '340px' }" [draggable]="false" [breakpoints]="{ '400px': '90vw' }" [resizable]="false">
+  <div class="field">
+    <p-dropdown class="new-task-dropdown" [options]="columns" [formControl]="taskColumnId" optionLabel="title"
+      optionValue="id" placeholder="Choose column for task" i18n-placeholder="@choosecolumn"></p-dropdown>
+  </div>
+  <div class="field">
+    <label for="taskTitle" class="block" i18n="@@titleoftask">Title of task</label>
+    <input id="taskTitle" [formControl]="taskTitle" type="title" aria-describedby="title-help" pInputText autofocus />
+    <small *ngIf="taskTitle.hasError('required') && !taskTitle.untouched" id="title-help" class="p-error block"
+      i18n="@@titlerequared">Title is
+      required.</small>
+    <small *ngIf="taskTitle.hasError('minlength') && !taskTitle.untouched" id="title-help" class="p-error block"
+      i18n="@@minsixchar">Minimum
+      6 characters.</small>
+  </div>
+  <div class="field">
+    <label for="taskDescription" class="block" i18n="@@Descrip">Description:</label>
+    <textarea id="taskDescription" [formControl]="taskDescription" rows="5" cols="23" pInputTextarea></textarea>
+    <small *ngIf="taskDescription.hasError('required') && !taskDescription.untouched" id="title-help"
+      class="p-error block" i18n="@@descrequared">Description is required.</small>
+    <small *ngIf="
+        taskDescription.hasError('minlength') && !taskDescription.untouched
+      " id="title-help" class="p-error block" i18n="@@mintwentychar">Minimum 20 characters.</small>
+  </div>
+  <ng-template pTemplate="footer">
+    <button pButton pRipple type="button" icon="pi pi-check" i18n-label="@@add" label="Add" (click)="addTask()"
+      class="p-button-raised" [disabled]="taskForm.invalid || loading"></button>
+  </ng-template>
+</p-dialog>
+<p-toast></p-toast>
+<p-confirmDialog [style]="{ width: '400px' }" [breakpoints]="{'500px': '90vw'}" [baseZIndex]="10000"
+  defaultFocus="reject" rejectButtonStyleClass="p-button-text"></p-confirmDialog>

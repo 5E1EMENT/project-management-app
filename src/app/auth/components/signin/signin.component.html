@@ -1,0 +1,39 @@
+<form [formGroup]="userSignin" (ngSubmit)="signin()" class="surface-card p-4 shadow-2 border-round">
+  <div class="text-center mb-5">
+    <div class="text-900 text-3xl font-medium mb-3" i18n="@@welcomeback">
+      Welcome Back
+    </div>
+    <span i18n="@@donthaveacc" class="text-600 font-medium line-height-3">Don't have an account?</span>
+    <a class="font-medium no-underline ml-2 text-blue-500 cursor-pointer" routerLink="/authorization/signup"
+      i18n="@@create">Create today!</a>
+  </div>
+
+  <div>
+    <label for="login" class="block text-900 font-medium mb-2" i18n="@@log-in">Login</label>
+    <input name="login" formControlName="login" id="login" type="text" pInputText class="w-full mb-3" />
+
+    <div *ngIf="
+        loginSignin?.invalid && (loginSignin?.dirty || loginSignin?.touched)
+      " class="alert alert-danger">
+      <div *ngIf="loginSignin?.errors?.['required']" i18n="@@plsenterlogin">
+        Please enter a login
+      </div>
+    </div>
+
+    <label for="password" class="block text-900 font-medium mb-2" i18n="@@pass">Password</label>
+    <input formControlName="password" id="password1" type="password" type="password" pInputText class="w-full mb-3" />
+
+    <div *ngIf="
+        passwordSignin?.invalid &&
+        (passwordSignin?.dirty || passwordSignin?.touched)
+      " class="alert alert-danger">
+      <div *ngIf="passwordSignin?.errors?.['required']" i18n="@@plsenterpass">
+        Please enter a password
+      </div>
+    </div>
+
+    <button type="submit" pButton pRipple label="Sign In" i18n-label="@@login" icon="pi pi-user"
+      class="w-full"></button>
+  </div>
+</form>
+<p-toast></p-toast>

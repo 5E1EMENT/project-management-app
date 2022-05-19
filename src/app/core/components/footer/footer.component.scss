@@ -1,0 +1,42 @@
+:host {
+  display: flex;
+  flex: 0 0 auto;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  background-color: #fff;
+  box-shadow: 0 5px 5px -3px rgb(0 0 0 / 20%), 0 8px 10px 1px rgb(0 0 0 / 14%),
+    0 3px 14px 2px rgb(0 0 0 / 12%);
+
+  .rs {
+    height: 50px;
+  }
+
+  .team-githubs {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    padding: 5px;
+    column-gap: 20px;
+
+    a {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      column-gap: 10px;
+    }
+  }
+}
+
+@media (max-width: 550px) {
+  a {
+    img {
+      width: 20px;
+      height: 20px;
+    }
+
+    .rs {
+      width: 60px;
+      height: 25px;
+    }
+  }
+}

@@ -1,0 +1,33 @@
+<form [formGroup]="modalForm" (ngSubmit)="onSubmit()">
+  <div class="formgrid grid">
+    <div class="field col-6">
+      <label for="title" i18n="@@title">Title</label>
+      <input pInputText id="title" type="text" [formControl]="title"
+        class="text-base text-color surface-overlay p-2 border-1 border-round appearance-none outline-none focus:border-primary w-full" />
+      <small *ngIf="title.hasError('required') && !title.untouched" id="title-help" class="p-error block"
+        i18n="@@titlerequared">Title is
+        required.</small>
+      <small *ngIf="title.hasError('minlength') && !title.untouched" id="title-help" class="p-error block"
+        i18n="@@minsixchar">Minimum 6
+        characters.</small>
+    </div>
+    <div class="field col-6">
+      <label for="description" i18n="@@Descrip">Description:</label>
+      <input pInputText id="description" type="text" [formControl]="description"
+        class="text-base text-color surface-overlay p-2 border-1 border-round appearance-none outline-none focus:border-primary w-full" />
+      <small *ngIf="description.hasError('required') && !description.untouched" id="title-help" class="p-error block"
+        i18n="@@descrequared">Description is
+        required.</small>
+      <small *ngIf="description.hasError('minlength') && !description.untouched" id="title-help" class="p-error block"
+        i18n="@@mintwentychar">Minimum
+        20
+        characters.</small>
+    </div>
+    <div class="field-checkbox col-6">
+      <input type="checkbox" id="done" [formControl]="done" />
+      <label for="done" i18n="@@done">Done</label>
+    </div>
+  </div>
+  <button pButton type="submit" label="Submit" i18n-label="@@submitbtn" class="p-button-raised p-button-rounded"
+    [disabled]="modalForm.invalid"></button>
+</form>

@@ -1,0 +1,25 @@
+:host {
+  display: block;
+  max-width: 600px;
+  margin: 0 auto;
+  margin-top: 100px;
+
+  .ng-valid,
+  .ng-valid.required {
+    border: 3px solid #42a948;
+  }
+
+  .ng-invalid:not(form) {
+    border: 3px solid #a94442;
+  }
+
+  .alert div {
+    position: absolute;
+    z-index: 1;
+    margin-bottom: 0.5rem;
+    padding: 5px;
+    color: #820000;
+    background-color: #fed3d3;
+    border-radius: 5px;
+  }
+}

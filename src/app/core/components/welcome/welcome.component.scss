@@ -1,0 +1,96 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  max-width: 1280px;
+  margin: 0 auto;
+  text-align: center;
+
+  h3,
+  h2 {
+    color: #3f51b5;
+  }
+
+  .welcome-title {
+    font-size: 3em;
+  }
+
+  .preview-img {
+    max-width: 1000px;
+    margin: 0 auto;
+
+    img {
+      width: 100%;
+    }
+  }
+
+  .start-btn {
+    border-radius: 20px;
+  }
+
+  .callback-bt {
+    z-index: 999;
+    width: 280px;
+    height: 50px;
+    margin: 10px 0;
+    text-align: center;
+    text-transform: uppercase;
+    border-radius: 15px;
+    box-shadow: 0 8px 10px rgb(56 163 253 / 30%);
+    cursor: pointer;
+    transition: 2s;
+    animation: hover-wave linear 2s infinite;
+  }
+
+  @keyframes hover-wave {
+    0% {
+      box-shadow: 0 8px 10px rgb(56 163 253 / 30%),
+        0 0 0 0 rgb(56 163 253 / 20%), 0 0 0 0 rgb(56 163 253 / 20%);
+      transform: scale(1.02);
+    }
+
+    20% {
+      transform: scale(1);
+    }
+
+    40% {
+      box-shadow: 0 8px 10px rgb(56 163 253 / 30%),
+        0 0 0 15px rgb(56 163 253 / 20%), 0 0 0 0 rgb(56 163 253 / 20%);
+    }
+
+    80% {
+      box-shadow: 0 8px 10px rgb(56 163 253 / 30%),
+        0 0 0 30px rgb(56 163 253 / 0%), 0 0 0 26.7px rgb(56 163 253 / 6.7%);
+    }
+
+    100% {
+      box-shadow: 0 8px 10px rgb(56 163 253 / 30%),
+        0 0 0 30px rgb(56 163 253 / 0%), 0 0 0 40px rgb(56 163 253 / 0%);
+    }
+  }
+
+  .team-description {
+    display: flex;
+    justify-content: space-around;
+
+    .team-card {
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+    }
+  }
+
+  .avatar {
+    width: 200px;
+    height: 200px;
+  }
+}
+
+@media (max-width: 1100px) {
+  :host {
+    .team-description {
+      display: flex;
+      flex-direction: column;
+      row-gap: 30px;
+    }
+  }
+}

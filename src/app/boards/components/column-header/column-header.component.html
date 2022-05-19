@@ -1,0 +1,19 @@
+<div class="column-header">
+  <div *ngIf="!editMode" class="column-title-wrapper">
+    <p class="column-title" (click)="onTitlePress(column)">
+      {{ column.title }}
+    </p>
+    <p-button icon="pi pi-times" styleClass="p-button-danger p-button-sm" (click)="onPressDeleteColumn(column)">
+    </p-button>
+  </div>
+  <div *ngIf="editMode" class="column-edit-wrapper">
+    <div class="edit-button-container">
+      <p-button label="Submit" i18n-label="@@submitbtn" styleClass="p-button-sm" (click)="changeColumnTitle(column)">
+      </p-button>
+      <p-button label="Cancel" i18n-label="@@cancelbtn" styleClass="p-button-sm p-button-danger"
+        (click)="closeEditMode()"></p-button>
+    </div>
+    <input class="input-title" id="titleCol" [formControl]="titleColumn" type="text" pInputText />
+  </div>
+</div>
+<p-toast></p-toast>

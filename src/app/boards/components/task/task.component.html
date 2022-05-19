@@ -1,0 +1,21 @@
+<div class="task">
+  <h2 class="task-title">{{ task.title }}</h2>
+  <p class="task-desc">{{ task.description }}</p>
+  <div class="buttons-wrapper">
+    <p-button type="submit" label="Edit Task" i18n-label="@@edittask" pRipple styleClass="p-button-sm" icon="pi pi-bars"
+      (click)="editTask()">
+    </p-button>
+    <p-button type="submit" label="Delete task" i18n-label="@@delete" pRipple styleClass="p-button-sm p-button-danger"
+      icon="pi pi-times-circle" (click)="deleteTask(task.id)">
+    </p-button>
+  </div>
+  <div class="done field-checkbox">
+    <label for="binary" *ngIf="done.value" i18n="@@done">Done</label>
+    <p-checkbox [formControl]="done" inputId="binary" [binary]="true" (onChange)="changeDone()"></p-checkbox>
+  </div>
+</div>
+<p-toast key="edit"></p-toast>
+<p-toast key="create"></p-toast>
+<p-toast key="delete"></p-toast>
+<p-confirmDialog [style]="{ width: '400px' }" [breakpoints]="{'500px': '90vw'}" [baseZIndex]="10000"
+  defaultFocus="reject" rejectButtonStyleClass="p-button-text"></p-confirmDialog>

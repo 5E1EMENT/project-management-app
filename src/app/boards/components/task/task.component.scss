@@ -1,0 +1,52 @@
+:host ::ng-deep {
+  display: block;
+  box-sizing: border-box;
+  width: 270px;
+  margin: 5px;
+  background-color: #fff;
+  border: 1px solid #000;
+  border-radius: 4px;
+  box-shadow: 0 5px 5px -3px rgb(0 0 0 / 20%), 0 8px 10px 1px rgb(0 0 0 / 14%),
+    0 3px 14px 2px rgb(0 0 0 / 12%);
+
+  .task {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    padding: 5px;
+  }
+
+  .task-title {
+    max-width: 100%;
+    margin: 20px 0 10px;
+    padding-right: 64px;
+    color: rgb(0 0 0 / 60%);
+    font-weight: 600;
+    font-size: 22px;
+    word-wrap: break-word;
+  }
+
+  .task-desc {
+    max-width: 100%;
+    margin-top: 0;
+    margin-bottom: 10px;
+    color: rgb(0 0 0 / 80%);
+    font-size: 16px;
+    word-wrap: break-word;
+  }
+
+  .buttons-wrapper {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .done {
+    position: absolute;
+    top: 5px;
+    right: 3px;
+    display: flex;
+    gap: 4px;
+    align-items: center;
+  }
+}

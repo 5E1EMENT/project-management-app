@@ -1,0 +1,36 @@
+<div class="card">
+  <p-dataView #dv [value]="(boards$ | async)!" [rows]="9" filterBy="title" layout="list" [loading]="loading">
+    <ng-template pTemplate="header">
+      <div class="top-wrapper flex justify-content-between p-flex-column p-flex-md-row p-jc-between">
+        <span class="p-input-icon-left p-mb-2 p-mb-md-0">
+          <i class="pi pi-search"></i>
+          <input #search type="search" pInputText i18n-placeholder="@@searchby" placeholder="Search by title"
+            (input)="dv.filter(search.value)" />
+        </span>
+        <button type="submit" pButton pRipple label="Create board" i18n-label="@@createboard" icon="pi pi-plus"
+          class="ml-auto" (click)="createBoard()"></button>
+      </div>
+    </ng-template>
+    <ng-template let-board pTemplate="listItem">
+      <div class="p-col-12">
+        <div class="board-list-item">
+          <div class="board-list-detail">
+            <div class="board-name">{{ board.title }}</div>
+            <span class="board-description">{{ board.description }}</span>
+          </div>
+          <div class="board-list-action flex align-items-center">
+            <p-button icon="pi pi-link" i18n-label="@@gotoboard" label="Go to board" (click)="goToBoard(board.id)">
+            </p-button>
+            <button pButton pRipple type="button" icon="pi pi-trash" class="p-button-rounded p-button-danger"
+              (click)="deleteBoard(board.id)"></button>
+            <button pButton pRipple type="button" icon="pi pi-user-edit" class="p-button-rounded p-button-success"
+              (click)="editBoard(board)"></button>
+          </div>
+        </div>
+      </div>
+    </ng-template>
+  </p-dataView>
+</div>
+<p-confirmDialog [style]="{ width: '400px' }" [breakpoints]="{'500px': '90vw'}" [baseZIndex]="10000"
+  defaultFocus="reject" rejectButtonStyleClass="p-button-text"></p-confirmDialog>
+<p-toast></p-toast>
